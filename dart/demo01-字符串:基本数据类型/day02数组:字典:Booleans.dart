@@ -1,8 +1,8 @@
 void main() {
   // 一：list
   //1.1第一种定义list的方式
-var l1 = ['章三',20,true];
-print(l1);
+  var l1 = ['章三', 20, true];
+  print(l1);
 
 //   list定义方式 可以是单引号 也是可以双引号
   var list = [1, 2, 3, 4, 5, '6'];
@@ -55,9 +55,9 @@ print(l1);
   var list71 = List.filled(2, 'nihao');
 // 注意如果后面的默认元素设置默认值班则他的类型就固定了，修改的时候类型需要保持一致
 // list71[0] = 1;//这里会报错类型不统一
-list71[0] = 'hello';
- print(list71);
-/*//1.6 List 常用的属性和方法:
+  list71[0] = 'hello';
+  print(list71);
+/*//1.6 List 常用的属性:
 常用属性:
 length 长度
 reversed 翻转
@@ -68,7 +68,11 @@ isNotEmpty 是否不为空*/
   print(groupList.isEmpty); //是否为空
   print(groupList.isNotEmpty); //是否不为空
 
-/*//1.7 List 常用的属性和方法:
+  var reversedlist = groupList.reversed
+      .toList(); //翻转 翻转后的得到的数据类型不是List类型需要调用toList()才转转化成List类型
+  print(reversedlist); //其他类型转换成List
+
+/*//1.7 List 常用的方法:
   常用方法:
   add 增加
   addAll 拼接数组
@@ -82,12 +86,11 @@ isNotEmpty 是否不为空*/
   join() List转换成字符串
   split() 字符串转化成List
   forEach 遍历
+  where
+  any 表示只要有符合条件的就返回真或者假
+  every 表示没一个符合条件的就返回真或者假
   map
 */
-  var reversedlist =
-      groupList.reversed; //翻转 翻转后的得到的数据类型不是List类型需要调用toList()才转转化成List类型
-  print(reversedlist.toList()); //其他类型转换成List
-
   List group1 = ['八戒', '沙僧', '悟空'];
   group1.add('唐僧'); //增加一个元素
   print('取经组合' + group1.toString());
@@ -96,6 +99,22 @@ isNotEmpty 是否不为空*/
   List group2 = ['佛祖', '观音', '弥勒佛'];
   group2.addAll(group1);
   print('增加后的数据' + group2.toString());
+
+//指定位置插入数组
+  List group22 = ['悟空', '八戒', '沙僧'];
+  group22.insertAll(1, ['唐僧']);
+  print('增加后的数据' + group22.toString());
+
+  //数组转换成字符串
+  List group4 = ['你好', '沙僧', '悟空', '白龙马'];
+  var groupstr = group4.join(''); //
+  print('转换成字符串后的数据：' + groupstr);
+  print(groupstr is String);
+
+//字符串转成List
+  var groupstr1 = '赵-钱-孙-李';
+  List grouplist = groupstr1.split('-');
+  print(grouplist);
 
   //获取当前的元素的下标
   print('佛祖所在的下标:' + group2.indexOf('沙僧').toString());
@@ -119,16 +138,21 @@ isNotEmpty 是否不为空*/
   group3.insert(1, ['玉帝', '王母娘娘']); //插入多个元素1:代表起始位置  后面中括号里面是插入的值
   print(group3);
 
-  //数组转换成字符串
-  List group4 = ['你好', '沙僧', '悟空', '白龙马'];
-  var groupstr = group4.join(''); //
-  print(groupstr);
-  print(groupstr is String);
+//查找数组中间
+  var boolcontain = group3.contains('玉帝');
+  print(boolcontain);
 
-//字符串转成List
-  var groupstr1 = '赵-钱-孙-李';
-  List grouplist = groupstr1.split('-');
-  print(grouplist);
+//any使用
+  var relult = group3.any((element) {
+    return element == "八戒";
+  });
+  print(relult);
+
+//every 使用
+  var relult2 = group3.every((value) {
+    return value == "八戒";
+  });
+  print(relult2);
 
 //二：set集合 他里面不能有重复的数据
   var appleset = new Set();
@@ -141,10 +165,11 @@ isNotEmpty 是否不为空*/
   var listset = appleset.toList();
   print(listset);
 
+//通过set取重list中的数据 通过新建一个Set在讲数组中的数据添加到set中，在将set转成数组
   List friute = ['香蕉1', '香蕉2', '香蕉3', '香蕉4', '香蕉5'];
   var friuteset = new Set();
   friuteset.addAll(friute);
-  print(friuteset.toList());
+  print(friuteset.toList()); //
 
   //遍历
   //第一种遍历方式
@@ -164,8 +189,9 @@ isNotEmpty 是否不为空*/
 
   //第四种使用箭头函数 注意箭头函数里面只能有一行，可以省略大括号
   friute.forEach((value) => {print(value)});
-//省略大括号后的效果
+  //省略大括号后的效果
   friute.forEach((value) => print(value));
+  
   //第五种便利方式
   var newlist = friute.map((value) {
     return value;
@@ -174,15 +200,23 @@ isNotEmpty 是否不为空*/
 
 //练习1 修改下面的List数据，让数组种的大于2的值乘以1
   List datelist = [2, 4, 5, 8, 9, 14, 1];
+
+//第一种种让满足条件的组成一个新的数组
   var newdatelist = datelist.map((value) {
     if (value > 2) {
       return value * 2;
     }
     return value;
   });
-
   print('大于2的值' + newdatelist.toString());
-//上面的结果可以改成一下的箭头函数
+
+//第二种让满足条件的组成一个新的数组
+  var newdatelist11 = datelist.where((value) {
+    return value > 5;
+  });
+  print('大于2的值' + newdatelist11.toString());
+
+//第三种满足条件的组成一个新的数组上面的结果可以改成一下的箭头函数
   var newdatelist1 = datelist.map((value) => value > 2 ? value * 2 : value);
   print(newdatelist1);
 
@@ -251,9 +285,16 @@ every
 //给Map增加key 和value
   person1.addAll({'weight': 30, 'hight': 170, 'age': '36'});
   print(person1);
+
+  //删除置指定的属性
+  person1.remove("age");
+  print(person1);
+
 //判断是否包含某个value
   person1.containsValue('36');
   person1.containsKey('weight');
+  //判断是否为空
+  print(person1.isEmpty);
 
 //1.3 第三种创建map类型的方法
   Map mapldata = {
@@ -321,6 +362,7 @@ every
     num++;
     print(num);
   }
+
   prinfinfo();
 
 //闭包其实他的可以解决 a不定义成全局变量 而是定义成局部又可以常驻内存
@@ -334,5 +376,5 @@ every
 
   Function b = getA();
   b();
-  b(); //这里调用会保存上次的值a 也即是常驻内存，他没有把上次的内存销毁保留了上次的值a ，如果上次是1 下一次就会++变成2 这样的就不用定义一个全局的a，这样的话相当于a是一个局部变量
+  b(); //这里调用会保存上次的值a 也即是常驻内存，他没有把上次的内存销毁保留了上次的值a ，如果上次是1 下一次就会++变成2 这样的就不用定义一个全局的a，这样的话相当于a是一个局部变量*/
 }

@@ -47,14 +47,16 @@ void main() {
 
 //1.4.1字符串转int/数字转字符串
   var intstr = '121';
-  int int1 = int.parse(intstr); //字符串转数字
-  print(int1);
-  double int2 = double.parse(intstr); //字符串转数字
-  print(int2);
+  var int1 = int.parse(intstr); //字符串转数字
+  print(int1 is int);
+
+  var intstr2 = '13.456';
+  var int2 = double.parse(intstr2); //字符串转数字
+  print(int2 is double);
 
   int number = 123;
   var numberstr = number.toString(); //数字转字符串
-  print(numberstr);
+  print(numberstr is String);
 
   String pricestr = '';
   try {
@@ -72,8 +74,26 @@ void main() {
 
 //字符串的截取
 // 使用”${}”打印表达式的值，打印单个变量的值不用加“{}”。
+  var hello = "hello";
+  print("${hello}");
+
+  var s2 = 100;
+  print('$s2 * 10 = ${s2 * 10}'); // 输出：100 * 10 = 1000
 
 // length打印字符串的长度。“isEmpty”判断字符串是否为空。
+  var myNum;
+  if (myNum == null) {
+    print('空');
+  } else {
+    print('非空');
+  }
+
+  var myNum1 = '';
+  if (myNum1.isEmpty) {
+    print('myNum1 空');
+  } else {
+    print('myNum1非空');
+  }
 
 // “contains()是否包含某个字符串”。”substring(startIndex,endIndex)截取一段字符串”。“
 
@@ -170,28 +190,4 @@ void main() {
   var release = 7;
   var release1 = --release; //先-1在赋值
   print(release1);
-
-  var sex = "男";
-  switch (sex) {
-    case "男":
-      print("男");
-      break;
-    case "女":
-      print("女");
-      break;
-    case "人妖":
-      print("人妖");
-      break;
-    default:
-      print("不存在");
-  }
-
-//三：bool类型
-  bool flag1 = true;
-  print(flag1);
-  if (flag1) {
-    print('真的');
-  } else {
-    print('假的');
-  }
 }

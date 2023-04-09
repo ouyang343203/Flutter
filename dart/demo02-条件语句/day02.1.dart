@@ -1,6 +1,37 @@
 //
 void main() {
-//一：循环语句 for循环
+// 一:条件运算符  bool if else  switch  case
+
+//一：bool类型
+  bool flag1 = true;
+  print(flag1);
+  if (flag1) {
+    print('真的');
+  } else {
+    print('假的');
+  }
+
+// 二条件运算符
+  var sex = "男";
+  switch (sex) {
+    case "男":
+      print("男");
+      break;
+    case "女":
+      print("女");
+      break;
+    case "人妖":
+      print("人妖");
+      break;
+    default:
+      print("不存在");
+  }
+
+// 三木运算符
+  var falg = true;
+  print(falg ? '难' : '易');
+
+//三：循环语句 for循环
 //打印0——50内的所有偶数
   var sum = 0;
   for (int i = 0; i < 100; i++) {
@@ -22,6 +53,10 @@ void main() {
   ];
   for (var i = 0; i < l2.length; i++) {
     print(l2[i]['title']);
+  }
+
+  for (var element in l2) {
+      print(element);
   }
 
   List list3 = [
@@ -124,7 +159,7 @@ continue可以用在for循环以及while循环中， 但是不建议用在while�
         //当i=4时跳出这循环就不会打印4
         break;
       }
-        print('我要打印里层数据----' + j.toString());
+      print('我要打印里层数据----' + j.toString());
     }
     print('我要打印的外层数据---' + i.toString());
   }

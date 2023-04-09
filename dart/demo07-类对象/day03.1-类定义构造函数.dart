@@ -20,6 +20,15 @@ class Person {
     return '${this.age} ---${this.name}';
   }
 
+// 函数的可选参数
+  void method1(String name, [int age = 1, int? h]) {
+    print('name is $name, age is $age, h is $h');
+  }
+
+  void method2(String name, {int? age, String? add}) {
+    print('name is $name, age is $age, h is $add');
+  }
+
 //无返回值的函数
   void getinfo() {
     print('${this.age}---${this.name}');
@@ -63,6 +72,8 @@ void main() {
   print(person1.changege(47, '李四'));
   person1.getinfo();
 
+//有默认值造函数
+  person1.method1('name', 4);
 //使用命名构造函数创建
   var person2 = Person.setinfo(23, '王五');
   print(person2.age);
@@ -91,5 +102,4 @@ void main() {
 
   Cat.name = '汤姆猫';
   Cat.show();
-
 }
